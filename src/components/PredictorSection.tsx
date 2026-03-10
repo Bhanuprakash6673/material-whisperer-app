@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import SectionHeader from "./SectionHeader";
-import { Flask } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 
 const EX: Record<string, string> = {
   nacl: `NaCl crystallizes in the cubic Pm-3m space group (space group #221). Na is bonded to eight equivalent Cl atoms to form edge-sharing NaCl8 cuboctahedra. The Na-Cl bond length is 2.80 Å. Cl is bonded to eight equivalent Na atoms. The lattice parameter a = 5.60 Å. The structure exhibits full octahedral symmetry.`,
