@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import CrystalSVG from "./CrystalSVG";
 import Particles from "./Particles";
-import { Flask, FileText } from "lucide-react";
+import { FlaskConical, FileText } from "lucide-react";
 
 function StatItem({ target, suffix, label }: { target: number; suffix: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);

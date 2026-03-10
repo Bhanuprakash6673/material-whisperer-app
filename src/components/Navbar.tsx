@@ -27,7 +27,6 @@ export default function Navbar() {
             CRYSTALPS
           </a>
 
-          {/* Desktop links */}
           <ul className="hidden md:flex items-center">
             {navLinks.map((l) => (
               <li key={l.href} className="ml-8">
@@ -43,14 +42,12 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Mobile menu button */}
           <button onClick={() => setMobileOpen(true)} className="md:hidden text-[#f5f5f5] text-2xl bg-transparent border-none cursor-pointer">
             <Menu className="w-6 h-6" />
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <div className={`fixed top-0 right-0 w-[78%] max-w-[300px] h-screen bg-white z-[1001] transition-transform shadow-[-5px_0_20px_rgba(0,0,0,0.1)] p-8 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}>
         <button onClick={() => setMobileOpen(false)} className="absolute top-4 right-4 text-foreground text-2xl bg-transparent border-none cursor-pointer">
           <X className="w-6 h-6" />
@@ -71,7 +68,6 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* Overlay */}
       {mobileOpen && (
         <div onClick={() => setMobileOpen(false)} className="fixed inset-0 bg-black/45 z-[1000]" />
       )}
