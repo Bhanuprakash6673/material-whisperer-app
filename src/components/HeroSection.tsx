@@ -68,7 +68,7 @@ export default function HeroSection() {
 
             <div className="flex gap-4 mt-7 flex-wrap justify-center lg:justify-start">
               <a href="#predictor" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[6px] font-semibold text-base bg-accent text-white shadow-[0_4px_18px_rgba(255,122,89,0.28)] hover:bg-accent-hover hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(255,122,89,0.38)] transition-all">
-                <Flask className="w-4 h-4" /> Try the Predictor
+                <FlaskConical className="w-4 h-4" /> Try the Predictor
               </a>
               <a href="https://arxiv.org/abs/2310.14029" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[6px] font-semibold text-base bg-white text-primary border-2 border-primary hover:bg-gray-light hover:-translate-y-[2px] transition-all">
                 <FileText className="w-4 h-4" /> Read the Paper

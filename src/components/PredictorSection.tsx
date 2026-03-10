@@ -136,7 +136,7 @@ export default function PredictorSection() {
               disabled={state === "loading"}
               className="w-full py-3.5 bg-accent text-white border-none rounded-[10px] text-base font-bold cursor-pointer flex items-center justify-center gap-2 hover:bg-accent-hover hover:-translate-y-[1px] transition-all disabled:opacity-55 disabled:cursor-not-allowed disabled:transform-none"
             >
-              <Flask className="w-4 h-4" /> Predict Properties
+              <FlaskConical className="w-4 h-4" /> Predict Properties
             </button>
           </div>
 
