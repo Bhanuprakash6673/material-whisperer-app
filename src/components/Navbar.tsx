@@ -1,124 +1,80 @@
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
-import { FlaskConical, Home, Info, LogIn, LogOut, LayoutDashboard } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Atom, Menu, X } from "lucide-react";
 
-const navItems = [
-  { to: "/", icon: Home, label: "Home" },
-  { to: "/dashboard", icon: LayoutDashboard, label: "Predict", auth: true },
-  { to: "/about", icon: Info, label: "About" },
+const navLinks = [
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#performance", label: "Results" },
+  { href: "#about", label: "About" },
 ];
 
-const Navbar = () => {
-  const { isLoggedIn, logout } = useAuth();
-  const location = useLocation();
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      {/* Desktop: vertical left rail */}
-      <nav className="hidden md:flex fixed left-0 top-0 h-full w-16 hover:w-48 transition-all duration-200 bg-card border-r border-border z-50 flex-col items-start py-8 group overflow-hidden">
-        <div className="flex items-center gap-3 px-4 mb-12">
-          <FlaskConical className="w-6 h-6 text-primary shrink-0" />
-          <span className="font-heading text-sm text-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-            Crystalline
-          </span>
-        </div>
+      <nav className={`fixed top-0 w-full z-[1000] transition-all ${scrolled ? "bg-[rgb(51,49,49)] shadow-lg" : "bg-[rgb(51,49,49)]"}`}>
+        <div className="w-[90%] max-w-[1200px] mx-auto flex justify-between items-center py-5">
+          <a href="#hero" className="flex items-center font-bold text-[1.45rem] text-[#f5f5f5] hover:scale-[1.04] transition-transform">
+            <span className="mr-2 text-accent text-[1.3rem]"><Atom className="w-6 h-6" /></span>
+            CRYSTALPS
+          </a>
 
-        <div className="flex flex-col gap-2 w-full flex-1">
-          {navItems.map((item) => {
-            if (item.auth && !isLoggedIn) return null;
-            const active = location.pathname === item.to;
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={`flex items-center gap-3 px-4 py-3 transition-colors ${
-                  active ? "text-primary bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                }`}
-              >
-                <item.icon className="w-5 h-5 shrink-0" />
-                <span className="font-heading text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  {item.label}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center">
+            {navLinks.map((l) => (
+              <li key={l.href} className="ml-8">
+                <a href={l.href} className="text-[#f0f0f0] font-medium text-[0.95rem] hover:text-accent transition-colors">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li className="ml-8">
+              <a href="#predictor" className="bg-accent text-white px-5 py-2 rounded-[5px] font-semibold hover:bg-accent-hover transition-colors">
+                Try Predictor
+              </a>
+            </li>
+          </ul>
 
-        <div className="w-full mt-auto">
-          {isLoggedIn ? (
-            <button
-              onClick={logout}
-              className="flex items-center gap-3 px-4 py-3 w-full text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-            >
-              <LogOut className="w-5 h-5 shrink-0" />
-              <span className="font-heading text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                Logout
-              </span>
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              className={`flex items-center gap-3 px-4 py-3 transition-colors ${
-                location.pathname === "/login" ? "text-primary bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-              }`}
-            >
-              <LogIn className="w-5 h-5 shrink-0" />
-              <span className="font-heading text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                Login
-              </span>
-            </Link>
-          )}
+          {/* Mobile menu button */}
+          <button onClick={() => setMobileOpen(true)} className="md:hidden text-[#f5f5f5] text-2xl bg-transparent border-none cursor-pointer">
+            <Menu className="w-6 h-6" />
+          </button>
         </div>
       </nav>
 
-      {/* Mobile: top bar */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 h-14 bg-card border-b border-border z-50 flex items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <FlaskConical className="w-5 h-5 text-primary" />
-          <span className="font-heading text-sm">Crystalline</span>
-        </Link>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground p-2">
-          <div className="w-5 flex flex-col gap-1">
-            <span className={`block h-px bg-foreground transition-transform ${mobileOpen ? "rotate-45 translate-y-[3px]" : ""}`} />
-            <span className={`block h-px bg-foreground transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-px bg-foreground transition-transform ${mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
-          </div>
+      {/* Mobile menu */}
+      <div className={`fixed top-0 right-0 w-[78%] max-w-[300px] h-screen bg-white z-[1001] transition-transform shadow-[-5px_0_20px_rgba(0,0,0,0.1)] p-8 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <button onClick={() => setMobileOpen(false)} className="absolute top-4 right-4 text-foreground text-2xl bg-transparent border-none cursor-pointer">
+          <X className="w-6 h-6" />
         </button>
-      </nav>
+        <ul className="mt-12">
+          {navLinks.map((l) => (
+            <li key={l.href} className="mb-5">
+              <a href={l.href} onClick={() => setMobileOpen(false)} className="text-foreground font-medium text-[1.1rem] block py-1 hover:text-accent transition-colors">
+                {l.label}
+              </a>
+            </li>
+          ))}
+          <li className="mb-5">
+            <a href="#predictor" onClick={() => setMobileOpen(false)} className="text-foreground font-medium text-[1.1rem] block py-1 hover:text-accent transition-colors">
+              Try Predictor
+            </a>
+          </li>
+        </ul>
+      </div>
 
+      {/* Overlay */}
       {mobileOpen && (
-        <div className="md:hidden fixed top-14 left-0 right-0 bg-card border-b border-border z-40 py-2">
-          {navItems.map((item) => {
-            if (item.auth && !isLoggedIn) return null;
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-foreground"
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="font-heading text-sm">{item.label}</span>
-              </Link>
-            );
-          })}
-          {isLoggedIn ? (
-            <button onClick={() => { logout(); setMobileOpen(false); }} className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-foreground w-full">
-              <LogOut className="w-5 h-5" />
-              <span className="font-heading text-sm">Logout</span>
-            </button>
-          ) : (
-            <Link to="/login" onClick={() => setMobileOpen(false)} className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-foreground">
-              <LogIn className="w-5 h-5" />
-              <span className="font-heading text-sm">Login</span>
-            </Link>
-          )}
-        </div>
+        <div onClick={() => setMobileOpen(false)} className="fixed inset-0 bg-black/45 z-[1000]" />
       )}
     </>
   );
-};
-
-export default Navbar;
+}
