@@ -32,7 +32,7 @@ function generateRandom(): PredData {
   return {
     bg: parseFloat((Math.random() * 4 + 0.5).toFixed(2)),
     vol: parseFloat((Math.random() * 180 + 30).toFixed(1)),
-    fe: parseFloat(-(Math.random() * 8).toFixed(2)),
+    fe: parseFloat((-Math.random() * 8).toFixed(2)),
     bt: Math.random() > 0.5 ? "Direct" : "Indirect",
     conf: [
       Math.floor(Math.random() * 15 + 70),
