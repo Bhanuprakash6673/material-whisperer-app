@@ -1,41 +1,81 @@
-import SectionHeader from "./SectionHeader";
-import Particles from "./Particles";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useEffect, useRef, useState } from "react";
 
 const steps = [
-  { emoji: "📄", num: 1, title: "Enter Description", desc: "Paste a natural language crystal description or upload a CIF file. The system accepts Robocrystallographer-format text or chemical formulas." },
-  { emoji: "🔧", num: 2, title: "Text Preprocessing", desc: "Bond distances → [NUM] tokens, angles → [ANG]. Stopwords removed. [CLS] token prepended. Text normalised for T5 tokeniser input." },
-  { emoji: "🤖", num: 3, title: "T5 Encoder", desc: "Fine-tuned T5-small encoder (6 layers, 37M params) extracts structural and chemical relationships from the crystal text representation." },
-  { emoji: "📊", num: 4, title: "Property Prediction", desc: "Linear prediction head outputs band gap (eV), volume (ų), formation energy, stability, and Metal / Semiconductor / Insulator classification." },
-  { emoji: "🌐", num: 5, title: "Results Delivered", desc: "Predictions rendered instantly in the web interface with confidence scores, classification labels, and downloadable results for research use." },
+  { num: "01", title: "Crystal Input", desc: "Text description or CIF file" },
+  { num: "02", title: "Text Generation", desc: "Structured description creation" },
+  { num: "03", title: "Preprocessing", desc: "[NUM], [ANG], stopwords removal" },
+  { num: "04", title: "T5 Encoder", desc: "Transformer-based encoding" },
+  { num: "05", title: "Prediction", desc: "Property value output" },
 ];
 
 export default function HowItWorksSection() {
-  const ref = useScrollAnimation();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          steps.forEach((_, i) => {
+            setTimeout(() => {
+              setVisibleSteps((prev) => [...prev, i]);
+            }, i * 300);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="how-it-works" className="py-28 bg-white relative overflow-hidden" ref={ref}>
-      <Particles />
-      <div className="w-[90%] max-w-[1200px] mx-auto relative z-[2]">
-        <SectionHeader
-          tag="The Process"
-          title="How"
-          titleHighlight="CrystalPS Works"
-          subtitle="Our streamlined pipeline converts crystal descriptions into property predictions in milliseconds."
-        />
+    <section id="how-it-works" ref={sectionRef} className="py-32 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
 
-        <div className="flex flex-col lg:flex-row justify-between relative mt-16">
-          {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-[30px] left-0 w-full h-[3px] bg-gradient-to-r from-secondary to-primary z-[1]" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Pipeline</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">How It Works</h2>
+        </div>
 
-          {steps.map((s) => (
-            <div key={s.num} className="scroll-animate flex-1 text-center px-5 relative mb-10 lg:mb-0">
-              <div className="w-[58px] h-[58px] bg-primary text-white rounded-full flex flex-col items-center justify-center text-[1.2rem] font-bold mx-auto mb-5 relative z-[2] shadow-[0_5px_18px_rgba(26,95,122,0.3)] hover:scale-110 hover:-translate-y-1 transition-transform">
-                <span className="text-[0.8rem] leading-none">{s.emoji}</span>
-                {s.num}
+        {/* Desktop horizontal pipeline */}
+        <div className="hidden md:flex items-start justify-between relative">
+          <div className="absolute top-10 left-[10%] right-[10%] h-px bg-border" />
+
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              className={`flex flex-col items-center text-center w-1/5 relative transition-all duration-700 ${
+                visibleSteps.includes(i) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              <div className="w-20 h-20 rounded-full border-2 border-primary bg-card flex items-center justify-center mb-4 relative z-10">
+                <span className="text-primary font-mono font-bold text-sm">{step.num}</span>
               </div>
-              <h3 className="text-[1.05rem] font-bold text-foreground mb-3">{s.title}</h3>
-              <p className="text-muted-foreground text-[0.88rem] leading-relaxed">{s.desc}</p>
+              <h3 className="text-sm font-semibold text-foreground mb-1">{step.title}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed max-w-[140px]">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile vertical */}
+        <div className="md:hidden space-y-8">
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              className={`flex items-start gap-4 transition-all duration-700 ${
+                visibleSteps.includes(i) ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+              }`}
+            >
+              <div className="w-14 h-14 rounded-full border-2 border-primary bg-card flex items-center justify-center flex-shrink-0">
+                <span className="text-primary font-mono font-bold text-xs">{step.num}</span>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">{step.title}</h3>
+                <p className="text-xs text-muted-foreground">{step.desc}</p>
+              </div>
             </div>
           ))}
         </div>
