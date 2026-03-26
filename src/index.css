@@ -132,6 +132,11 @@
   animation: float 4s ease-in-out infinite;
 }
 
+@keyframes sparkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+
 /* Scroll reveal */
 .scroll-reveal {
   opacity: 0;
