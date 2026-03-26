@@ -47,9 +47,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gray: {
-          light: "hsl(var(--gray-light))",
-          DEFAULT: "hsl(var(--gray))",
+        glass: {
+          DEFAULT: "hsl(var(--glass))",
+          border: "hsl(var(--glass-border))",
         },
       },
       borderRadius: {

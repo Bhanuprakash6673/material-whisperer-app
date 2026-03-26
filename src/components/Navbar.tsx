@@ -1,75 +1,91 @@
 import { useState, useEffect } from "react";
-import { Atom, Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
-const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#performance", label: "Results" },
-  { href: "#about", label: "About" },
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/#how-it-works", label: "How It Works" },
+  { to: "/#features", label: "Features" },
+  { to: "/#demo", label: "Demo" },
+  { to: "/predict", label: "Predict" },
+  { to: "/login", label: "Login" },
 ];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNav = (to: string) => {
+    setOpen(false);
+    if (to.includes("#")) {
+      const hash = to.split("#")[1];
+      if (location.pathname === "/") {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <>
-      <nav className={`fixed top-0 w-full z-[1000] transition-all ${scrolled ? "bg-[rgb(51,49,49)] shadow-lg" : "bg-[rgb(51,49,49)]"}`}>
-        <div className="w-[90%] max-w-[1200px] mx-auto flex justify-between items-center py-5">
-          <a href="#hero" className="flex items-center font-bold text-[1.45rem] text-[#f5f5f5] hover:scale-[1.04] transition-transform">
-            <span className="mr-2 text-accent text-[1.3rem]"><Atom className="w-6 h-6" /></span>
-            CRYSTALPS
-          </a>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-border" : "bg-transparent"}`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+          <Link to="/" className="text-xl font-bold tracking-wider">
+            <span className="gradient-text">LLM</span>
+            <span className="text-foreground ml-1">PROP</span>
+          </Link>
 
-          <ul className="hidden md:flex items-center">
-            {navLinks.map((l) => (
-              <li key={l.href} className="ml-8">
-                <a href={l.href} className="text-[#f0f0f0] font-medium text-[0.95rem] hover:text-accent transition-colors">
-                  {l.label}
-                </a>
-              </li>
+          <div className="hidden md:flex items-center gap-1">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => handleNav(l.to)}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  l.to === "/login"
+                    ? "bg-primary text-primary-foreground hover:bg-accent-hover ml-2"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {l.label}
+              </Link>
             ))}
-            <li className="ml-8">
-              <a href="#predictor" className="bg-accent text-white px-5 py-2 rounded-[5px] font-semibold hover:bg-accent-hover transition-colors">
-                Try Predictor
-              </a>
-            </li>
-          </ul>
+          </div>
 
-          <button onClick={() => setMobileOpen(true)} className="md:hidden text-[#f5f5f5] text-2xl bg-transparent border-none cursor-pointer">
+          <button onClick={() => setOpen(true)} className="md:hidden text-foreground">
             <Menu className="w-6 h-6" />
           </button>
         </div>
       </nav>
 
-      <div className={`fixed top-0 right-0 w-[78%] max-w-[300px] h-screen bg-white z-[1001] transition-transform shadow-[-5px_0_20px_rgba(0,0,0,0.1)] p-8 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <button onClick={() => setMobileOpen(false)} className="absolute top-4 right-4 text-foreground text-2xl bg-transparent border-none cursor-pointer">
-          <X className="w-6 h-6" />
-        </button>
-        <ul className="mt-12">
-          {navLinks.map((l) => (
-            <li key={l.href} className="mb-5">
-              <a href={l.href} onClick={() => setMobileOpen(false)} className="text-foreground font-medium text-[1.1rem] block py-1 hover:text-accent transition-colors">
-                {l.label}
-              </a>
-            </li>
-          ))}
-          <li className="mb-5">
-            <a href="#predictor" onClick={() => setMobileOpen(false)} className="text-foreground font-medium text-[1.1rem] block py-1 hover:text-accent transition-colors">
-              Try Predictor
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      {mobileOpen && (
-        <div onClick={() => setMobileOpen(false)} className="fixed inset-0 bg-black/45 z-[1000]" />
+      {/* Mobile drawer */}
+      {open && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-72 bg-card border-l border-border p-6 animate-fade-in">
+            <button onClick={() => setOpen(false)} className="absolute top-4 right-4 text-foreground">
+              <X className="w-6 h-6" />
+            </button>
+            <div className="mt-12 flex flex-col gap-2">
+              {links.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => handleNav(l.to)}
+                  className="px-4 py-3 text-foreground hover:bg-muted rounded-md transition-colors"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
