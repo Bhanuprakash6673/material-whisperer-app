@@ -183,8 +183,9 @@ function ParticleField() {
   );
 }
 
-export default function Crystal3D({ className = "", interactive = true }: { className?: string; interactive?: boolean }) {
+export default function Crystal3D({ className = "", interactive = true, forceHover }: { className?: string; interactive?: boolean; forceHover?: boolean }) {
   const [hovered, setHovered] = useState(false);
+  const isHovered = forceHover !== undefined ? forceHover : hovered;
 
   return (
     <div
