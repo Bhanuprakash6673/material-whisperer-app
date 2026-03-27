@@ -4,6 +4,7 @@ import Crystal3D from "@/components/Crystal3D";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
