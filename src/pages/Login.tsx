@@ -33,6 +33,7 @@ export default function Login() {
           <span className="text-sm font-medium">Back</span>
         </button>
 
+        <div className="glass-card rounded-xl p-8">
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
               <span className="gradient-text">LLM</span> <span className="text-foreground">PROP</span>
