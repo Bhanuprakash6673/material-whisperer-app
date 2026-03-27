@@ -1,19 +1,27 @@
+import { useState } from "react";
 import Crystal3D from "./Crystal3D";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       {/* 3D Crystal as full background */}
-      <div className="absolute inset-0 z-0">
-        <Crystal3D className="w-full h-full cursor-grab active:cursor-grabbing" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
       </div>
 
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 z-[1] bg-background/40 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pointer-events-none">
         <div className="flex flex-col items-start justify-center min-h-screen pt-20">
           <div className="space-y-6 animate-fade-in-up">
             <h1 className="text-7xl md:text-9xl font-extrabold leading-[1.05] tracking-tight">
@@ -27,7 +35,7 @@ export default function HeroSection() {
               A T5-based transformer approach to materials science.
             </p>
 
-            <div className="flex gap-4 pt-2">
+            <div className="flex gap-4 pt-2 pointer-events-auto">
               <Link
                 to="/predict"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-accent-hover transition-all animate-pulse-glow"
