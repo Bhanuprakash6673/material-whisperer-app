@@ -11,15 +11,19 @@ const steps = [
 export default function HowItWorksSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
+  const [lineProgress, setLineProgress] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // Animate line segments one by one
           steps.forEach((_, i) => {
             setTimeout(() => {
               setVisibleSteps((prev) => [...prev, i]);
-            }, i * 300);
+              // Line reaches each circle center
+              setLineProgress(i + 1);
+            }, i * 600);
           });
           observer.disconnect();
         }
@@ -42,7 +46,17 @@ export default function HowItWorksSection() {
 
         {/* Desktop horizontal pipeline */}
         <div className="hidden md:flex items-start justify-between relative">
+          {/* Background track line */}
           <div className="absolute top-10 left-[10%] right-[10%] h-px bg-border" />
+
+          {/* Animated progress line - goes behind circles */}
+          <div
+            className="absolute top-10 left-[10%] h-px bg-primary transition-all ease-out"
+            style={{
+              width: lineProgress === 0 ? "0%" : `${((lineProgress - 1) / (steps.length - 1)) * 80}%`,
+              transitionDuration: "600ms",
+            }}
+          />
 
           {steps.map((step, i) => (
             <div

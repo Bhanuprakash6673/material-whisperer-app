@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Crystal3D from "@/components/Crystal3D";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
@@ -23,6 +24,15 @@ export default function Login() {
       <div className="absolute inset-0 bg-background/80" />
 
       <div className="relative z-10 w-full max-w-md mx-auto px-6">
+        {/* Back button */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">Back</span>
+        </button>
+
         <div className="glass-card rounded-xl p-8">
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
