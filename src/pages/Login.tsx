@@ -24,7 +24,15 @@ export default function Login() {
       <div className="absolute inset-0 bg-background/80" />
 
       <div className="relative z-10 w-full max-w-md mx-auto px-6">
-        <div className="glass-card rounded-xl p-8">
+        {/* Back button */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">Back</span>
+        </button>
+
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
               <span className="gradient-text">LLM</span> <span className="text-foreground">PROP</span>
