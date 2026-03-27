@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const steps = [
   { num: "01", title: "Crystal Input", desc: "Text description or CIF file" },
@@ -12,30 +12,52 @@ export default function HowItWorksSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
   const [activeLine, setActiveLine] = useState(-1);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearAllTimeouts = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+  }, []);
+
+  const runAnimation = useCallback(() => {
+    clearAllTimeouts();
+    setVisibleSteps([]);
+    setActiveLine(-1);
+
+    steps.forEach((_, i) => {
+      const t1 = setTimeout(() => {
+        setVisibleSteps((prev) => [...prev, i]);
+      }, i * 700);
+      timeoutsRef.current.push(t1);
+
+      if (i < steps.length - 1) {
+        const t2 = setTimeout(() => {
+          setActiveLine(i);
+        }, i * 700 + 400);
+        timeoutsRef.current.push(t2);
+      }
+    });
+  }, [clearAllTimeouts]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          steps.forEach((_, i) => {
-            setTimeout(() => {
-              setVisibleSteps((prev) => [...prev, i]);
-            }, i * 700);
-            // Line segment appears after circle is visible, before next circle
-            if (i < steps.length - 1) {
-              setTimeout(() => {
-                setActiveLine(i);
-              }, i * 700 + 400);
-            }
-          });
-          observer.disconnect();
+          runAnimation();
+        } else {
+          clearAllTimeouts();
+          setVisibleSteps([]);
+          setActiveLine(-1);
         }
       },
       { threshold: 0.2 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      clearAllTimeouts();
+    };
+  }, [runAnimation, clearAllTimeouts]);
 
   return (
     <section id="how-it-works" ref={sectionRef} className="py-32 relative">
@@ -49,13 +71,10 @@ export default function HowItWorksSection() {
 
         {/* Desktop horizontal pipeline */}
         <div className="hidden md:flex items-start justify-between relative">
-          {/* Line segments between circles */}
           {steps.slice(0, -1).map((_, i) => {
-            // Each segment goes from circle i center to circle i+1 center
-            // Circles are at 10%, 30%, 50%, 70%, 90% (evenly in 5 cols of 20% each)
             const startPct = 10 + i * 20;
-            const segWidth = 20; // gap between circle centers
-            const circleRadius = 2.8; // ~half of w-20 in % of container
+            const segWidth = 20;
+            const circleRadius = 2.8;
             return (
               <div
                 key={`line-${i}`}
@@ -65,9 +84,7 @@ export default function HowItWorksSection() {
                   width: `${segWidth - circleRadius * 2}%`,
                 }}
               >
-                {/* Track */}
                 <div className="absolute inset-0 bg-border" />
-                {/* Animated fill */}
                 <div
                   className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all ease-out"
                   style={{
