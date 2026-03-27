@@ -183,8 +183,9 @@ function ParticleField() {
   );
 }
 
-export default function Crystal3D({ className = "", interactive = true }: { className?: string; interactive?: boolean }) {
+export default function Crystal3D({ className = "", interactive = true, forceHover }: { className?: string; interactive?: boolean; forceHover?: boolean }) {
   const [hovered, setHovered] = useState(false);
+  const isHovered = forceHover !== undefined ? forceHover : hovered;
 
   return (
     <div
@@ -199,7 +200,7 @@ export default function Crystal3D({ className = "", interactive = true }: { clas
         <pointLight position={[0, -5, 3]} intensity={0.6} color="#f97316" />
         <pointLight position={[3, 3, -5]} intensity={0.5} color="#34d399" />
         <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
-          <CrystalMesh hovered={hovered} />
+          <CrystalMesh hovered={isHovered} />
         </Float>
         <ParticleField />
         {interactive && <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />}
