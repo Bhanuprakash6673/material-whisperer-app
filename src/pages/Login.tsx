@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Crystal3D from "@/components/Crystal3D";
+import PredictBackground from "@/components/PredictBackground";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 export default function Login() {
@@ -11,29 +11,23 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder — no backend
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center">
-      {/* Background crystal */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none">
-        <Crystal3D className="w-full h-full" interactive={false} />
-      </div>
+    <div className="min-h-screen relative flex items-center justify-center bg-white">
+      <PredictBackground />
 
-      <div className="absolute inset-0 bg-background/80" />
+      {/* Back button - fixed top left */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-6 left-6 z-20 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="text-sm font-medium">Back</span>
+      </button>
 
       <div className="relative z-10 w-full max-w-md mx-auto px-6">
-        {/* Back button */}
-        <button
-          onClick={() => navigate("/")}
-          className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span className="text-sm font-medium">Back</span>
-        </button>
-
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg rounded-xl p-8">
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
               <span className="gradient-text">LLM</span> <span className="text-foreground">PROP</span>
