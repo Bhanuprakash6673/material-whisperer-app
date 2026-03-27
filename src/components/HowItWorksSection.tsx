@@ -11,19 +11,22 @@ const steps = [
 export default function HowItWorksSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
-  const [lineProgress, setLineProgress] = useState(0);
+  const [activeLine, setActiveLine] = useState(-1);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Animate line segments one by one
           steps.forEach((_, i) => {
             setTimeout(() => {
               setVisibleSteps((prev) => [...prev, i]);
-              // Line reaches each circle center
-              setLineProgress(i + 1);
-            }, i * 600);
+            }, i * 700);
+            // Line segment appears after circle is visible, before next circle
+            if (i < steps.length - 1) {
+              setTimeout(() => {
+                setActiveLine(i);
+              }, i * 700 + 400);
+            }
           });
           observer.disconnect();
         }
@@ -46,17 +49,35 @@ export default function HowItWorksSection() {
 
         {/* Desktop horizontal pipeline */}
         <div className="hidden md:flex items-start justify-between relative">
-          {/* Background track line */}
-          <div className="absolute top-10 left-[10%] right-[10%] h-px bg-border" />
-
-          {/* Animated progress line - goes behind circles */}
-          <div
-            className="absolute top-10 left-[10%] h-px bg-primary transition-all ease-out"
-            style={{
-              width: lineProgress === 0 ? "0%" : `${((lineProgress - 1) / (steps.length - 1)) * 80}%`,
-              transitionDuration: "600ms",
-            }}
-          />
+          {/* Line segments between circles */}
+          {steps.slice(0, -1).map((_, i) => {
+            // Each segment goes from circle i center to circle i+1 center
+            // Circles are at 10%, 30%, 50%, 70%, 90% (evenly in 5 cols of 20% each)
+            const startPct = 10 + i * 20;
+            const segWidth = 20; // gap between circle centers
+            const circleRadius = 2.8; // ~half of w-20 in % of container
+            return (
+              <div
+                key={`line-${i}`}
+                className="absolute top-10 h-[3px] overflow-hidden"
+                style={{
+                  left: `${startPct + circleRadius}%`,
+                  width: `${segWidth - circleRadius * 2}%`,
+                }}
+              >
+                {/* Track */}
+                <div className="absolute inset-0 bg-border" />
+                {/* Animated fill */}
+                <div
+                  className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all ease-out"
+                  style={{
+                    width: activeLine >= i ? "100%" : "0%",
+                    transitionDuration: "500ms",
+                  }}
+                />
+              </div>
+            );
+          })}
 
           {steps.map((step, i) => (
             <div
@@ -65,7 +86,11 @@ export default function HowItWorksSection() {
                 visibleSteps.includes(i) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="w-20 h-20 rounded-full border-2 border-primary bg-card flex items-center justify-center mb-4 relative z-10">
+              <div
+                className={`w-20 h-20 rounded-full border-2 bg-card flex items-center justify-center mb-4 relative z-10 transition-colors duration-500 ${
+                  visibleSteps.includes(i) ? "border-primary" : "border-border"
+                }`}
+              >
                 <span className="text-primary font-mono font-bold text-sm">{step.num}</span>
               </div>
               <h3 className="text-sm font-semibold text-foreground mb-1">{step.title}</h3>

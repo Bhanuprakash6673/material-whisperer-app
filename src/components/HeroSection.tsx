@@ -11,7 +11,7 @@ export default function HeroSection() {
       </div>
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-background/40" />
+      <div className="absolute inset-0 z-[1] bg-background/40 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col items-start justify-center min-h-screen pt-20">
