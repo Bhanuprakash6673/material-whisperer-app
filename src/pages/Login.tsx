@@ -71,10 +71,18 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              className="w-full py-2.5 glass-btn-primary font-semibold rounded-lg transition-colors"
             >
               Login
             </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-500 mt-6">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+              Sign Up
+            </Link>
+          </p>
           </form>
         </div>
       </div>

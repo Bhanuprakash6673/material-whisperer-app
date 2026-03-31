@@ -49,8 +49,8 @@ export default function Navbar() {
                 onClick={() => handleNav(l.to)}
                 className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   l.to === "/login"
-                    ? "bg-primary text-primary-foreground hover:bg-accent-hover ml-2"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "glass-btn-primary ml-2"
+                    : "text-muted-foreground hover:text-foreground glass-btn"
                 }`}
               >
                 {l.label}

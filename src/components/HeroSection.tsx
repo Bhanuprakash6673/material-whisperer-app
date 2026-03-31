@@ -38,7 +38,7 @@ export default function HeroSection() {
             <div className="flex gap-4 pt-2 pointer-events-auto">
               <Link
                 to="/predict"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-accent-hover transition-all animate-pulse-glow"
+                className="inline-flex items-center gap-2 px-6 py-3 glass-btn-primary font-semibold rounded-lg transition-all animate-pulse-glow"
               >
                 Let's Predict
                 <ArrowRight className="w-4 h-4" />
