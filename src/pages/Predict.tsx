@@ -71,6 +71,7 @@ export default function Predict() {
   const handleAddToClipboard = async () => {
     const lastBotMsg = [...chatMessages].reverse().find((m) => m.role === "bot");
     if (lastBotMsg) {
+      setInput(lastBotMsg.text);
       await navigator.clipboard.writeText(lastBotMsg.text);
     }
   };
