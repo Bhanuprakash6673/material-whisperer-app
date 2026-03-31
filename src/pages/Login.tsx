@@ -83,7 +83,6 @@ export default function Login() {
               Sign Up
             </Link>
           </p>
-          </form>
         </div>
       </div>
     </div>
