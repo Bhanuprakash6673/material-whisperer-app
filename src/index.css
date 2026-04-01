@@ -6,43 +6,43 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 92%;
+    --background: 36 40% 95%;
+    --foreground: 30 10% 15%;
 
-    --card: 222 40% 10%;
-    --card-foreground: 210 40% 92%;
+    --card: 36 30% 90%;
+    --card-foreground: 30 10% 15%;
 
-    --popover: 222 40% 10%;
-    --popover-foreground: 210 40% 92%;
+    --popover: 36 30% 90%;
+    --popover-foreground: 30 10% 15%;
 
-    --primary: 199 89% 48%;
-    --primary-light: 199 70% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 25 80% 50%;
+    --primary-light: 25 70% 60%;
+    --primary-foreground: 36 40% 97%;
 
-    --secondary: 260 60% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 30 50% 40%;
+    --secondary-foreground: 36 40% 97%;
 
-    --accent: 199 89% 48%;
-    --accent-hover: 199 80% 40%;
-    --accent-foreground: 222 47% 6%;
+    --accent: 25 80% 50%;
+    --accent-hover: 25 70% 42%;
+    --accent-foreground: 36 40% 97%;
 
-    --muted: 222 30% 14%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 36 20% 88%;
+    --muted-foreground: 30 10% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 199 89% 48%;
+    --border: 30 15% 82%;
+    --input: 30 15% 82%;
+    --ring: 25 80% 50%;
 
     --radius: 8px;
 
-    --glass: 222 40% 12%;
-    --glass-border: 222 30% 22%;
+    --glass: 36 25% 92%;
+    --glass-border: 30 15% 80%;
 
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.12);
   }
 }
 
