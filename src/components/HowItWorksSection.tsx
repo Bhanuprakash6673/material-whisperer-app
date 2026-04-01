@@ -66,7 +66,7 @@ export default function HowItWorksSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Pipeline</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground font-heading">How It Works</h2>
         </div>
 
         {/* Desktop horizontal pipeline */}
@@ -110,8 +110,8 @@ export default function HowItWorksSection() {
               >
                 <span className="text-primary font-mono font-bold text-sm">{step.num}</span>
               </div>
-              <h3 className="text-sm font-semibold text-foreground mb-1">{step.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed max-w-[140px]">{step.desc}</p>
+              <h3 className="text-sm font-semibold text-foreground mb-1 font-heading">{step.title}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed max-w-[140px] font-body">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -129,8 +129,8 @@ export default function HowItWorksSection() {
                 <span className="text-primary font-mono font-bold text-xs">{step.num}</span>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-foreground">{step.title}</h3>
-                <p className="text-xs text-muted-foreground">{step.desc}</p>
+                <h3 className="text-sm font-semibold text-foreground font-heading">{step.title}</h3>
+                <p className="text-xs text-muted-foreground font-body">{step.desc}</p>
               </div>
             </div>
           ))}

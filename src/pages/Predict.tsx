@@ -85,8 +85,8 @@ export default function Predict() {
         <div className="absolute inset-0 z-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.1),transparent_50%)]" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-16">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Predict Properties</h1>
-          <p className="text-muted-foreground mb-8">Enter a crystal description to predict properties.</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2 font-heading">Predict Properties</h1>
+          <p className="text-muted-foreground mb-8 font-body">Enter a crystal description to predict properties.</p>
 
           {/* Input area - text only */}
           <div className="glass-card rounded-xl p-6 mb-6">
@@ -124,7 +124,7 @@ export default function Predict() {
           {/* Results */}
           {results && (
             <div className="glass-card rounded-xl p-6 animate-fade-in-up">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Predicted Properties</h2>
+              <h2 className="text-lg font-semibold text-foreground mb-4 font-heading">Predicted Properties</h2>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">

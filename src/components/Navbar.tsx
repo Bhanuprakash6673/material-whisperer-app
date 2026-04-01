@@ -36,8 +36,8 @@ export default function Navbar() {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-border" : "bg-transparent"}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           <Link to="/" className="text-xl font-bold tracking-wider">
-            <span className="gradient-text">LLM</span>
-            <span className="text-foreground ml-1">PROP</span>
+            <span className="gradient-text font-heading">LLM</span>
+            <span className="text-foreground ml-1 font-heading">PROP</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-1">
