@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Crystal3D from "@/components/Crystal3D";
 import { FileText, MessageCircle, X, Send, FlaskConical, Copy, Check, Clipboard } from "lucide-react";
 
 const dummyResults = [
