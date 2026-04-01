@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Crystal3D from "@/components/Crystal3D";
 import { FileText, MessageCircle, X, Send, FlaskConical, Copy, Check, Clipboard } from "lucide-react";
 
 const dummyResults = [
@@ -39,7 +38,7 @@ export default function Predict() {
   const [input, setInput] = useState("");
   const [results, setResults] = useState<typeof dummyResults | null>(null);
   const [loading, setLoading] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  
 
   const [chatOpen, setChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -80,16 +79,10 @@ export default function Predict() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <main
-        className="flex-1 relative pt-20"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {/* Same 3D background as home page */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
-        </div>
-        <div className="absolute inset-0 z-[1] bg-background/60 pointer-events-none" />
+      <main className="flex-1 relative pt-20">
+        {/* Cream gradient background */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-background via-muted/40 to-background" />
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.1),transparent_50%)]" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-16">
           <h1 className="text-3xl font-bold text-foreground mb-2">Predict Properties</h1>
