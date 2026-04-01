@@ -66,7 +66,7 @@ export default function HowItWorksSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Pipeline</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground font-heading">How It Works</h2>
         </div>
 
         {/* Desktop horizontal pipeline */}
