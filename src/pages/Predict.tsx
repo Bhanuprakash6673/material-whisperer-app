@@ -79,11 +79,7 @@ export default function Predict() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <main
-        className="flex-1 relative pt-20"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
+      <main className="flex-1 relative pt-20">
         {/* Cream gradient background */}
         <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-background via-muted/40 to-background" />
         <div className="absolute inset-0 z-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.15),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.1),transparent_50%)]" />
