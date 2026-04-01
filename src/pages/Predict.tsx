@@ -124,7 +124,7 @@ export default function Predict() {
           {/* Results */}
           {results && (
             <div className="glass-card rounded-xl p-6 animate-fade-in-up">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Predicted Properties</h2>
+              <h2 className="text-lg font-semibold text-foreground mb-4 font-heading">Predicted Properties</h2>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">

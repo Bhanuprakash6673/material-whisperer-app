@@ -8,10 +8,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-lg font-bold mb-2">
+            <h3 className="text-lg font-bold mb-2 font-heading">
               <span className="gradient-text">LLM</span> PROP
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed font-body">
               Predicting crystalline material properties using large language models.
               Based on T5 transformer architecture.
             </p>

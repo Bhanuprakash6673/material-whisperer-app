@@ -16,8 +16,8 @@ export default function PredictBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* White-blue gradient base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-blue-100" />
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-200/30 via-transparent to-white/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/60 to-blue-100/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-200/20 via-transparent to-white/80" />
 
       {/* Sparkle black dots */}
       {dots.map((dot) => (

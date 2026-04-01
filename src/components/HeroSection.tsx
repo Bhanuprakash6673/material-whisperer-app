@@ -19,7 +19,7 @@ export default function HeroSection() {
       </div>
 
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-background/50 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-white/50 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pointer-events-none">
         <div className="flex flex-col items-start justify-center min-h-screen pt-20">

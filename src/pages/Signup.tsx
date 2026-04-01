@@ -34,7 +34,7 @@ export default function Signup() {
             <Link to="/" className="text-2xl font-bold">
               <span className="text-primary font-heading">LLM</span> <span className="text-foreground font-heading">PROP</span>
             </Link>
-            <p className="text-gray-500 text-sm mt-2">Create your account</p>
+            <p className="text-muted-foreground text-sm mt-2 font-body">Create your account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
