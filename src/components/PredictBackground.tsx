@@ -23,7 +23,7 @@ export default function PredictBackground() {
       {dots.map((dot) => (
         <div
           key={dot.id}
-          className="absolute rounded-full bg-gray-900"
+          className="absolute rounded-full bg-foreground/60"
           style={{
             left: `${dot.left}%`,
             top: `${dot.top}%`,
