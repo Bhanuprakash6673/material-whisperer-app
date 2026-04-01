@@ -30,7 +30,7 @@ export default function Login() {
         <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg rounded-xl p-8">
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
-              <span className="text-blue-600">LLM</span> <span className="text-gray-900">PROP</span>
+              <span className="text-primary font-heading">LLM</span> <span className="text-foreground font-heading">PROP</span>
             </Link>
             <p className="text-gray-500 text-sm mt-2">Sign in to your account</p>
           </div>
