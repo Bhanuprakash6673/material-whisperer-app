@@ -38,7 +38,7 @@ export default function Predict() {
   const [input, setInput] = useState("");
   const [results, setResults] = useState<typeof dummyResults | null>(null);
   const [loading, setLoading] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  
 
   const [chatOpen, setChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
