@@ -10,9 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
-
-const App = () => (
+/* queryClient moved up */
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
