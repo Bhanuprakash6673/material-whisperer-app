@@ -21,8 +21,8 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <Crystal3D className="w-full h-full" interactive={false} forceHover={touching} />
+        <div className="fixed inset-0 z-0">
+          <Crystal3D className="w-full h-full" interactive={false} />
         </div>
         <div
           className="relative z-10"
