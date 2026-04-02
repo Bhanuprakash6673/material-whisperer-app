@@ -17,8 +17,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-white">
-      <PredictBackground />
+    <div className="min-h-screen relative flex items-center justify-center">
 
       <button
         onClick={() => navigate("/")}
