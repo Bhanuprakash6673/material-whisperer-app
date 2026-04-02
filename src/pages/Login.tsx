@@ -14,8 +14,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-white">
-      <PredictBackground />
+    <div className="min-h-screen relative flex items-center justify-center">
 
       {/* Back button - fixed top left */}
       <button
