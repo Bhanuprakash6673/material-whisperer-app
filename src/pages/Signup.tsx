@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import PredictBackground from "@/components/PredictBackground";
+
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 export default function Signup() {
