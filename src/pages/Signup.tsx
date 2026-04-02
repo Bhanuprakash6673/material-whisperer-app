@@ -28,7 +28,7 @@ export default function Signup() {
       </button>
 
       <div className="relative z-10 w-full max-w-md mx-auto px-6">
-        <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg rounded-xl p-8">
+        <div className="glass-card backdrop-blur-md shadow-lg rounded-xl p-8">
           <div className="text-center mb-8">
             <Link to="/" className="text-2xl font-bold">
               <span className="text-primary font-heading">LLM</span> <span className="text-foreground font-heading">PROP</span>
