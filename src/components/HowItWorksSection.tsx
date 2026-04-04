@@ -110,8 +110,8 @@ export default function HowItWorksSection() {
               >
                 <span className="text-primary font-mono font-bold text-sm">{step.num}</span>
               </div>
-              <h3 className="text-sm font-semibold text-foreground mb-1 font-heading">{step.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed max-w-[140px] font-body">{step.desc}</p>
+              <h3 className="text-base font-bold text-foreground mb-1 font-heading">{step.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-[160px] font-body">{step.desc}</p>
             </div>
           ))}
         </div>

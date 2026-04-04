@@ -19,7 +19,7 @@ export default function HeroSection() {
               <span className="text-foreground">PROP</span>
             </h1>
 
-            <p className="text-lg text-muted-foreground max-w-md leading-relaxed font-body">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-lg leading-relaxed font-body">
               Predicting Crystal Properties using Large Language Models.
               A T5-based transformer approach to materials science.
             </p>
