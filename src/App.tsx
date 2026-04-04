@@ -21,6 +21,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        {/* Full-screen hover detector behind everything */}
         <div
           className="fixed inset-0 z-0"
           onMouseEnter={() => setHovered(true)}
@@ -28,18 +29,16 @@ const App = () => {
         >
           <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
         </div>
-        <div className="relative z-10 pointer-events-none">
-          <div className="pointer-events-auto">
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/predict" element={<Predict />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </div>
+        <div className="relative z-10">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/predict" element={<Predict />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
         </div>
       </TooltipProvider>
     </QueryClientProvider>
