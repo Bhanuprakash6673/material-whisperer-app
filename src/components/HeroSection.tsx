@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col items-start justify-center min-h-screen pt-20">
           <div className="space-y-6 animate-fade-in-up">
-            <h1 className="text-7xl md:text-9xl font-extrabold leading-[1.05] tracking-tight font-heading">
+            <h1 className="text-8xl md:text-[11rem] font-black leading-[0.95] tracking-tighter font-heading">
               <span className="gradient-text">LLM</span>
               <br />
               <span className="text-foreground">PROP</span>
