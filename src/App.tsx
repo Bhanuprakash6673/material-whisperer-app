@@ -22,16 +22,14 @@ const App = () => {
         <Toaster />
         <Sonner />
         <div className="fixed inset-0 z-0">
-          <Crystal3D className="w-full h-full" interactive={false} />
+          <Crystal3D className="w-full h-full" interactive={false} forceHover={touching} />
         </div>
         <div
-          className="relative z-10"
-          onMouseDown={() => setTouching(true)}
-          onMouseUp={() => setTouching(false)}
+          className="relative z-10 pointer-events-none"
+          onMouseEnter={() => setTouching(true)}
           onMouseLeave={() => setTouching(false)}
-          onTouchStart={() => setTouching(true)}
-          onTouchEnd={() => setTouching(false)}
         >
+          <div className="pointer-events-auto">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
