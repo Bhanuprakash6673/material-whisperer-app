@@ -29,7 +29,7 @@ export default function DemoSection() {
       <div className="relative z-10 max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Try It</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Quick Demo</h2>
+          <h2 className="text-4xl md:text-6xl font-black text-foreground font-heading tracking-tight">Quick Demo</h2>
         </div>
 
         <div className="glass-card rounded-xl p-8">

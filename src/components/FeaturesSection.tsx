@@ -24,7 +24,7 @@ export default function FeaturesSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Capabilities</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground font-heading">Features</h2>
+          <h2 className="text-4xl md:text-6xl font-black text-foreground font-heading tracking-tight">Features</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -36,8 +36,8 @@ export default function FeaturesSection() {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                 <f.icon className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2 font-heading">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed font-body">{f.desc}</p>
+              <h3 className="text-xl font-bold text-foreground mb-2 font-heading">{f.title}</h3>
+              <p className="text-base text-muted-foreground leading-relaxed font-body">{f.desc}</p>
             </div>
           ))}
         </div>

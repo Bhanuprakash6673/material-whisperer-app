@@ -22,14 +22,14 @@ const App = () => {
         <Toaster />
         <Sonner />
         <div
-          className="fixed inset-0 z-0"
+          className="relative min-h-screen"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
-        </div>
-        <div className="relative z-10 pointer-events-none">
-          <div className="pointer-events-auto">
+          <div className="fixed inset-0 z-0">
+            <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
+          </div>
+          <div className="relative z-10">
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
