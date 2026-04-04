@@ -14,31 +14,31 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [touching, setTouching] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div className="fixed inset-0 z-0">
-          <Crystal3D className="w-full h-full" interactive={false} forceHover={touching} />
-        </div>
         <div
-          className="relative z-10 pointer-events-none"
-          onMouseEnter={() => setTouching(true)}
-          onMouseLeave={() => setTouching(false)}
+          className="fixed inset-0 z-0"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
+          <Crystal3D className="w-full h-full" interactive={false} forceHover={hovered} />
+        </div>
+        <div className="relative z-10 pointer-events-none">
           <div className="pointer-events-auto">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/predict" element={<Predict />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/predict" element={<Predict />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
           </div>
         </div>
       </TooltipProvider>
