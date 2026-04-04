@@ -28,8 +28,8 @@ function CrystalMesh({ hovered }: { hovered: boolean }) {
     }
   });
 
-  const geo = useMemo(() => new THREE.OctahedronGeometry(2.2, 0), []);
-  const icoGeo = useMemo(() => new THREE.IcosahedronGeometry(1.9, 0), []);
+  const geo = useMemo(() => new THREE.OctahedronGeometry(1.4, 0), []);
+  const icoGeo = useMemo(() => new THREE.IcosahedronGeometry(1.2, 0), []);
 
   const vertices = useMemo(() => {
     const pos = geo.getAttribute("position");
